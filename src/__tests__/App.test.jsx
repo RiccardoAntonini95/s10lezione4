@@ -38,12 +38,24 @@ describe("Il componente CommentArea", () => {
 
 //verifica che il filtraggio dei libri funzioni come previsto
 
-describe('Comportamento del filtro', () => {
-    it('restituire due elementi in base a una ricerca', () => {
+describe("Comportamento del filtro", () => {
+    it("restituire due elementi in base a una ricerca", () => {
         render(<App />);
-        const campoInput = screen.getByPlaceholderText(/Search here/i);
+        const campoInput = screen.getByPlaceholderText(/Search here/i)
         fireEvent.change(campoInput, {target: {value: 'morden'}})
-        const elencoFiltrato = screen.getAllByTestId("libro");
+        const elencoFiltrato = screen.getAllByTestId("libro")
         expect(elencoFiltrato).toHaveLength(1);
-    });
-});
+    })
+})
+
+//verifica se al click di un libro cambia il colore del bordo
+
+describe("Il singolo libro", () => {
+    it("cambia colore al click", () => {
+        render(<App />)
+        const imgCard = screen.getAllByTestId("img-card")
+        const firstImg = imgCard[0]
+        fireEvent.click(firstImg)
+        expect(firstImg).toHaveStyle("border: 3px solid red")
+    })
+})

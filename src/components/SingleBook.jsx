@@ -9,6 +9,7 @@ const SingleBook = (props) => {
       <Card
         onClick={() => {props.getSingleAsin(`${props.book.asin}`); setSelected(!selected)}}
         style={{ border: selected ? '3px solid red' : 'none' }}
+        data-testid="img-card"
       >
         <Card.Img variant="top" src={props.book.img} />
         <Card.Body>
